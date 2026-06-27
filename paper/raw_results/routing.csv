@@ -1,0 +1,201 @@
+id,query_id,run_id,complexity,model_selected,routing_reason,timestamp
+1,95bf80e9,camas_b931e829,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:20.713720+00:00
+2,5fab0699,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:21.497600+00:00
+3,a959efcd,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:22.152412+00:00
+4,e1631876,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:22.665540+00:00
+5,6033eac2,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:23.102326+00:00
+6,ab1aff8e,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:24.377189+00:00
+7,5fb2aaaf,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:24.944817+00:00
+8,3e3c3b22,camas_b931e829,1.5,phi3,Complexity 1.50 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:25.783833+00:00
+9,15919c9f,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:26.449167+00:00
+10,feb39f48,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:27.128631+00:00
+11,42bbdbdd,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:27.616129+00:00
+12,d323271d,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:28.420005+00:00
+13,f39c38c9,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:28.887348+00:00
+14,468d8bc6,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:30.146941+00:00
+15,69f72421,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:30.603439+00:00
+16,8028b99a,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:31.175998+00:00
+17,b7c432ae,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:31.859417+00:00
+18,1f53c629,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:33.226781+00:00
+19,e3325c40,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:33.812598+00:00
+20,f03e776c,camas_b931e829,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:34.760959+00:00
+21,26bf040e,camas_b931e829,7.1,llama3.2:8b,Complexity 7.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:18:47.245096+00:00
+22,79c63121,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:49.380256+00:00
+23,11657973,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:50.524403+00:00
+24,64f92e12,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:51.830699+00:00
+25,fc5626d6,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:52.272100+00:00
+26,f8e6f27f,camas_b931e829,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:18:53.557591+00:00
+27,236b9258,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:54.323677+00:00
+28,1896eb52,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:55.325026+00:00
+29,f4dc07c2,camas_b931e829,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:56.475062+00:00
+30,650d18b5,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:57.884467+00:00
+31,aa123e92,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:18:58.887516+00:00
+32,127de6c4,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:00.389241+00:00
+33,c0d28f8e,camas_b931e829,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:01.898858+00:00
+34,40f53ade,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:02.517538+00:00
+35,44c5cbd1,camas_b931e829,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:03.884870+00:00
+36,98286536,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:05.399189+00:00
+37,41d4aea9,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:06.048670+00:00
+38,91aaf9d2,camas_b931e829,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:06.599884+00:00
+39,1d249c49,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:07.115160+00:00
+40,f83bd87f,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:08.516893+00:00
+41,ac88d9b9,camas_b931e829,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:21.881075+00:00
+42,fa10751e,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:22.472865+00:00
+43,be5a2fc6,camas_b931e829,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:23.637983+00:00
+44,3deaa0e9,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:24.529519+00:00
+45,de80d510,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:25.916285+00:00
+46,0267b89c,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:27.020885+00:00
+47,39fc2677,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:28.453843+00:00
+48,42e46b82,camas_b931e829,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:29.914991+00:00
+49,e18f6d4f,camas_b931e829,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:31.047374+00:00
+50,cdef4b86,camas_b931e829,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:19:31.900072+00:00
+51,448d2b7d,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:34.716165+00:00
+52,ee45b428,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:36.239891+00:00
+53,7bb75a8a,camas_b931e829,2.9,llama3.2:3b,"Complexity 2.90 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:36.698233+00:00
+54,ec0bd14c,camas_b931e829,4.7,llama3.2:8b,Complexity 4.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:19:38.033834+00:00
+55,fb8febb8,camas_b931e829,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:19:40.425263+00:00
+56,d786aab7,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:41.459113+00:00
+57,850fe15a,camas_b931e829,4.9,llama3.2:8b,Complexity 4.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:19:42.066241+00:00
+58,56cd60d2,camas_b931e829,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:19:44.725290+00:00
+59,bb5090a2,camas_b931e829,4.5,llama3.2:8b,Complexity 4.50 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:19:45.498955+00:00
+60,2ec66bd6,camas_b931e829,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:19:47.588350+00:00
+61,a3b52d2d,camas_b931e829,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:01.749669+00:00
+62,22032a3d,camas_b931e829,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:04.229635+00:00
+63,1c70567b,camas_b931e829,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:05.998167+00:00
+64,4a4e7e1c,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:07.774092+00:00
+65,2612dfb6,camas_b931e829,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:10.614851+00:00
+66,bc5831c1,camas_b931e829,9.7,llama3.2:8b,Complexity 9.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:12.745403+00:00
+67,d0845f97,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:14.882395+00:00
+68,424fbdc7,camas_b931e829,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:16.857531+00:00
+69,c2c96b0d,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:18.403446+00:00
+70,406206ce,camas_b931e829,9.5,llama3.2:8b,Complexity 9.50 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:21.283512+00:00
+71,e7a90d27,camas_b931e829,7.7,llama3.2:8b,Complexity 7.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:23.953430+00:00
+72,91abae29,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:25.512009+00:00
+73,e0051c99,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:27.100722+00:00
+74,e4724118,camas_b931e829,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:29.218194+00:00
+75,2cf525c5,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:31.220341+00:00
+76,c7d73af1,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:33.237147+00:00
+77,124d730a,camas_b931e829,10.0,llama3.2:8b,Complexity 10.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:35.199621+00:00
+78,26539c19,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:37.945088+00:00
+79,266c03b5,camas_b931e829,7.7,llama3.2:8b,Complexity 7.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:39.719117+00:00
+80,eb7d3a26,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:41.839138+00:00
+81,171c5e41,camas_b931e829,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:56.300600+00:00
+82,6e004d95,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:20:58.706000+00:00
+83,a59bb32e,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:00.866690+00:00
+84,69f236ac,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:03.530113+00:00
+85,848fd5c9,camas_b931e829,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:05.892255+00:00
+86,07de2ae0,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:08.253821+00:00
+87,20b2f314,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:10.160698+00:00
+88,a6d79c1e,camas_b931e829,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:12.894765+00:00
+89,9421f88d,camas_b931e829,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:14.570212+00:00
+90,a9103695,camas_b931e829,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:17.474861+00:00
+91,771c9fcc,camas_b931e829,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:19.339829+00:00
+92,94f5ee8c,camas_b931e829,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:21.789138+00:00
+93,a80f96bb,camas_b931e829,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:23.877213+00:00
+94,ff823d63,camas_b931e829,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:26.833848+00:00
+95,84094bd1,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:28.705326+00:00
+96,1ef3291a,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:31.144605+00:00
+97,ecc143c8,camas_b931e829,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:34.023451+00:00
+98,92d348aa,camas_b931e829,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:36.522291+00:00
+99,3c7cbba9,camas_b931e829,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:39.231047+00:00
+100,8184a503,camas_b931e829,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:21:41.439437+00:00
+101,5a243605,camas_d0a6345a,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:09.694951+00:00
+102,7e2a7330,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:10.442122+00:00
+103,81c3537c,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:10.873374+00:00
+104,02468f15,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:11.503402+00:00
+105,a0bb5597,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:12.180370+00:00
+106,89e41793,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:13.218421+00:00
+107,d301c727,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:13.646943+00:00
+108,f60dfbaf,camas_d0a6345a,1.5,phi3,Complexity 1.50 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:15.051933+00:00
+109,d9b6448f,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:15.658102+00:00
+110,f2f15b90,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:16.156999+00:00
+111,b57696ec,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:16.660728+00:00
+112,a4d98256,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:17.455011+00:00
+113,3a2ccdc2,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:18.090326+00:00
+114,e9d02092,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:19.581537+00:00
+115,3eb50b15,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:20.358073+00:00
+116,c1ead9b4,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:20.983215+00:00
+117,b1f98827,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:21.676240+00:00
+118,4bf3b8a4,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:22.515900+00:00
+119,9fda99a9,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:22.931754+00:00
+120,36bf5167,camas_d0a6345a,1.0,phi3,Complexity 1.00 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:24.176998+00:00
+121,6a6bb6d5,camas_d0a6345a,7.1,llama3.2:8b,Complexity 7.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:23:36.867694+00:00
+122,494ce364,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:39.745984+00:00
+123,4519ed58,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:41.094311+00:00
+124,09df08ab,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:42.455824+00:00
+125,f9dfd56c,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:42.980857+00:00
+126,5000663f,camas_d0a6345a,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:44.252560+00:00
+127,37c83fb1,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:44.785365+00:00
+128,c1559ade,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:45.704389+00:00
+129,522edb45,camas_d0a6345a,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:46.773887+00:00
+130,260f45a1,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:47.589750+00:00
+131,ae237c4f,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:48.593258+00:00
+132,1e48c2f4,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:50.100234+00:00
+133,b54ff4dd,camas_d0a6345a,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:51.674876+00:00
+134,07a1b602,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:52.190920+00:00
+135,1a7e7cbd,camas_d0a6345a,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:53.514908+00:00
+136,97bed2b5,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:54.809724+00:00
+137,a07acd14,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:55.603575+00:00
+138,3dcf8643,camas_d0a6345a,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:23:56.359915+00:00
+139,95bdaadc,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:57.109459+00:00
+140,891f8eee,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:23:58.496341+00:00
+141,c9188982,camas_d0a6345a,1.8,phi3,Complexity 1.80 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:24:11.953197+00:00
+142,3cc93845,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:12.410544+00:00
+143,7d470924,camas_d0a6345a,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:13.471249+00:00
+144,3d2152fd,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:14.917840+00:00
+145,ebc17779,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:16.258974+00:00
+146,384cb7da,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:17.263836+00:00
+147,4eece0fb,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:18.599386+00:00
+148,07a16c9c,camas_d0a6345a,2.7,llama3.2:3b,"Complexity 2.70 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:20.108582+00:00
+149,ef2ecdf4,camas_d0a6345a,2.4,llama3.2:3b,"Complexity 2.40 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:21.388298+00:00
+150,a914db98,camas_d0a6345a,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:22.741591+00:00
+151,8381e4ed,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:25.562901+00:00
+152,e6bdd418,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:24:27.148454+00:00
+153,67c6820e,camas_d0a6345a,2.9,llama3.2:3b,"Complexity 2.90 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:27.638953+00:00
+154,4cb5427c,camas_d0a6345a,4.7,llama3.2:8b,Complexity 4.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:28.901014+00:00
+155,e09978fb,camas_d0a6345a,2.5,llama3.2:3b,"Complexity 2.50 in [2.3, 3.8) → medium model 'llama3.2:3b' selected for balanced performance.",2026-06-27T11:24:31.674016+00:00
+156,aeac6f08,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:24:32.533594+00:00
+157,405c38ba,camas_d0a6345a,4.9,llama3.2:8b,Complexity 4.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:32.955422+00:00
+158,3bbab2cb,camas_d0a6345a,2.2,phi3,Complexity 2.20 < 2.3 → lightweight model 'phi3' selected for energy efficiency.,2026-06-27T11:24:34.501305+00:00
+159,dea25fe4,camas_d0a6345a,4.5,llama3.2:8b,Complexity 4.50 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:35.105641+00:00
+160,e3f88561,camas_d0a6345a,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:37.669231+00:00
+161,efac5ea9,camas_d0a6345a,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:52.391703+00:00
+162,363772d0,camas_d0a6345a,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:54.589654+00:00
+163,44f32b41,camas_d0a6345a,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:56.732303+00:00
+164,fee425a8,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:24:58.751246+00:00
+165,f9163a27,camas_d0a6345a,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:01.149344+00:00
+166,0649c0aa,camas_d0a6345a,9.7,llama3.2:8b,Complexity 9.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:02.836046+00:00
+167,2dd487b4,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:05.608585+00:00
+168,e6910978,camas_d0a6345a,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:07.991155+00:00
+169,2dd9099a,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:10.974279+00:00
+170,3a3d82b7,camas_d0a6345a,9.5,llama3.2:8b,Complexity 9.50 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:13.349391+00:00
+171,c3db6053,camas_d0a6345a,7.7,llama3.2:8b,Complexity 7.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:15.819136+00:00
+172,c871f551,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:17.604399+00:00
+173,f9cc958e,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:19.913581+00:00
+174,a1e50b43,camas_d0a6345a,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:22.805596+00:00
+175,50b4485e,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:25.429459+00:00
+176,c694a220,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:27.818587+00:00
+177,f4c2d036,camas_d0a6345a,10.0,llama3.2:8b,Complexity 10.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:29.740030+00:00
+178,556b7836,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:32.223580+00:00
+179,d1cb1709,camas_d0a6345a,7.7,llama3.2:8b,Complexity 7.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:33.825975+00:00
+180,610f8114,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:35.583332+00:00
+181,9826c974,camas_d0a6345a,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:50.554711+00:00
+182,cea4965f,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:53.218488+00:00
+183,3f5c95fb,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:55.842840+00:00
+184,d5815cbb,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:57.573423+00:00
+185,aa4bd3a3,camas_d0a6345a,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:25:59.225514+00:00
+186,9b08929c,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:00.944824+00:00
+187,4cd40e3b,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:03.210555+00:00
+188,7ae5b187,camas_d0a6345a,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:05.685475+00:00
+189,3fdfa2b6,camas_d0a6345a,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:07.246717+00:00
+190,37585740,camas_d0a6345a,8.8,llama3.2:8b,Complexity 8.80 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:09.643501+00:00
+191,47630e48,camas_d0a6345a,6.7,llama3.2:8b,Complexity 6.70 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:11.940217+00:00
+192,d5200f34,camas_d0a6345a,9.0,llama3.2:8b,Complexity 9.00 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:14.586955+00:00
+193,784736f8,camas_d0a6345a,6.9,llama3.2:8b,Complexity 6.90 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:16.998443+00:00
+194,7522ab09,camas_d0a6345a,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:18.873079+00:00
+195,8e59a696,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:20.402780+00:00
+196,ef4157ad,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:22.400015+00:00
+197,f42735df,camas_d0a6345a,7.4,llama3.2:8b,Complexity 7.40 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:24.961964+00:00
+198,f243da95,camas_d0a6345a,8.1,llama3.2:8b,Complexity 8.10 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:27.013628+00:00
+199,86a707c6,camas_d0a6345a,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:29.215463+00:00
+200,f8b00583,camas_d0a6345a,7.6,llama3.2:8b,Complexity 7.60 ≥ 3.8 → capable model 'llama3.2:8b' selected for high-quality output.,2026-06-27T11:26:30.838475+00:00
