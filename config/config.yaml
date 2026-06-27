@@ -1,0 +1,68 @@
+# CAMAS Configuration File
+
+system:
+  name: "CAMAS"
+  version: "1.0.0"
+  description: "Carbon-Aware Multi-Agent System"
+
+ollama:
+  base_url: "http://localhost:11434"
+  timeout: 120
+  models:
+    simple: "phi3"
+    medium: "llama3.2:3b"
+    complex: "llama3.2:8b"
+    baseline: "llama3.2:8b"
+
+routing:
+  complexity_thresholds:
+    simple_max: 2.3    # complexity < 2.3  -> phi3          (~20% of queries)
+    medium_max: 3.8    # 2.3 <= comp < 3.8 -> llama3.2:3b  (~40% of queries)
+    # >= 3.8 -> llama3.2:8b                                 (~40% of queries)
+
+energy:
+  mock_mode: true
+  mock_cpu_power_watts: 15.0
+  mock_gpu_power_watts: 80.0
+
+carbon:
+  mock_mode: true
+  mock_intensity_g_per_kwh: 400.0  # gCO2/kWh (global average)
+  real_intensity_g_per_kwh: null    # Set to override mock
+
+power_management:
+  idle_threshold_seconds: 10
+  sleep_check_interval_seconds: 2
+  inter_batch_sleep_seconds: 12  # pause inserted between query batches to trigger sleep
+
+resource_allocation:
+  low_complexity:
+    cpu_cores: 2
+    gpu_memory_gb: 1.0
+    ram_gb: 2.0
+  medium_complexity:
+    cpu_cores: 4
+    gpu_memory_gb: 4.0
+    ram_gb: 8.0
+  high_complexity:
+    cpu_cores: 8
+    gpu_memory_gb: 8.0
+    ram_gb: 16.0
+
+cost:
+  # USD per million tokens (approximate)
+  phi3_cost_per_1m_tokens: 0.10
+  llama3_2_3b_cost_per_1m_tokens: 0.20
+  llama3_2_8b_cost_per_1m_tokens: 0.75
+
+experiment:
+  baseline_mode: false
+  num_queries: 100
+  prompts_file: "experiments/prompts.json"
+  results_dir: "reports"
+  visualization_dir: "visualizations"
+  database_path: "database/camas.db"
+
+logging:
+  level: "INFO"
+  file: "camas.log"

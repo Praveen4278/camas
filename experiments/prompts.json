@@ -1,0 +1,710 @@
+{
+  "metadata": {
+    "total": 100,
+    "simple": 20,
+    "medium": 40,
+    "complex": 40
+  },
+  "prompts": [
+    {
+      "id": 1,
+      "text": "What is the capital of France?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 2,
+      "text": "Who wrote Romeo and Juliet?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 3,
+      "text": "What year did World War II end?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 4,
+      "text": "What is 15 times 7?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 5,
+      "text": "What is the chemical symbol for gold?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 6,
+      "text": "How many continents are there?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 7,
+      "text": "What is the largest planet in our solar system?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 8,
+      "text": "What language is spoken in Brazil?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 9,
+      "text": "What is the speed of light?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 10,
+      "text": "Who invented the telephone?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 11,
+      "text": "What color is the sky on a clear day?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 12,
+      "text": "How many days are in a leap year?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 13,
+      "text": "What is the boiling point of water in Celsius?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 14,
+      "text": "Who is the author of Harry Potter?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 15,
+      "text": "What is the currency of Japan?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 16,
+      "text": "How many sides does a hexagon have?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 17,
+      "text": "What is the tallest mountain on Earth?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 18,
+      "text": "Who painted the Mona Lisa?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 19,
+      "text": "What is the smallest country in the world?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 20,
+      "text": "How many bones are in the adult human body?",
+      "category": "simple",
+      "expected_complexity_min": 1,
+      "expected_complexity_max": 3
+    },
+    {
+      "id": 21,
+      "text": "Explain the difference between machine learning and deep learning.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 22,
+      "text": "Describe the main causes of World War I.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 23,
+      "text": "What are the pros and cons of renewable energy?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 24,
+      "text": "Summarize the theory of evolution.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 25,
+      "text": "How does a blockchain work?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 26,
+      "text": "What are the key principles of object-oriented programming?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 27,
+      "text": "Describe the water cycle and its importance.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 28,
+      "text": "Explain how the internet works at a high level.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 29,
+      "text": "What is the difference between a virus and a bacterium?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 30,
+      "text": "Describe the main branches of the US government.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 31,
+      "text": "How does inflation affect an economy?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 32,
+      "text": "Explain the concept of supply and demand.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 33,
+      "text": "What are the main types of cloud computing?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 34,
+      "text": "Describe the process of photosynthesis.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 35,
+      "text": "What is the difference between RAM and storage?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 36,
+      "text": "Explain how vaccines work.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 37,
+      "text": "Describe the structure of DNA.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 38,
+      "text": "What are the main principles of agile software development?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 39,
+      "text": "How does GPS work?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 40,
+      "text": "Explain the concept of opportunity cost in economics.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 41,
+      "text": "What are the main types of cyber attacks?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 42,
+      "text": "Describe the greenhouse effect and climate change.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 43,
+      "text": "What is the difference between TCP and UDP?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 44,
+      "text": "How does a relational database work?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 45,
+      "text": "Explain the concept of recursion in programming.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 46,
+      "text": "What are the main differences between SQL and NoSQL databases?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 47,
+      "text": "Describe the role of the United Nations.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 48,
+      "text": "What is the difference between deductive and inductive reasoning?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 49,
+      "text": "How does encryption protect data?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 50,
+      "text": "Explain the main types of learning algorithms in ML.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 51,
+      "text": "What are the differences between supervised and unsupervised learning?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 52,
+      "text": "Describe how a compiler works.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 53,
+      "text": "What is REST API and how does it work?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 54,
+      "text": "Explain the concept of neural networks at a high level.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 55,
+      "text": "What are the main differences between IPv4 and IPv6?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 56,
+      "text": "Describe the concept of version control.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 57,
+      "text": "What is the difference between monolithic and microservices architectures?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 58,
+      "text": "Explain how hash functions work.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 59,
+      "text": "What are design patterns and why are they used?",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 60,
+      "text": "Describe the main types of sorting algorithms.",
+      "category": "medium",
+      "expected_complexity_min": 3,
+      "expected_complexity_max": 7
+    },
+    {
+      "id": 61,
+      "text": "Design a distributed system architecture for a real-time financial trading platform handling 1 million transactions per second.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 62,
+      "text": "Analyze and compare the computational complexity of various graph traversal algorithms, and derive optimal solutions for sparse versus dense graphs.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 63,
+      "text": "Implement a complete transformer architecture from scratch in Python, explaining each component including self-attention, positional encoding, and feed-forward layers.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 64,
+      "text": "Research and synthesize the current state of quantum computing and its implications for cryptography over the next decade.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 65,
+      "text": "Design a carbon-aware scheduling system for a global data center network, optimizing for renewable energy availability.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 66,
+      "text": "Derive the mathematical foundations of backpropagation and explain how gradient descent converges in deep neural networks.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 67,
+      "text": "Architect a multi-tenant SaaS platform with zero-trust security, automated compliance, and multi-region data residency.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 68,
+      "text": "Analyze the trade-offs between CAP theorem guarantees in modern distributed databases and recommend architectures for different use cases.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 69,
+      "text": "Design a machine learning pipeline for detecting financial fraud in real-time, including feature engineering, model selection, and deployment.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 70,
+      "text": "Write a comprehensive analysis of the Byzantine Generals Problem and its solutions in modern consensus algorithms like Raft and PBFT.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 71,
+      "text": "Implement a compiler for a simple functional programming language including lexer, parser, type checker, and code generator.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 72,
+      "text": "Design a recommendation system for a streaming platform with 500 million users using collaborative filtering and deep learning.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 73,
+      "text": "Analyze the algorithmic complexity of different matrix multiplication approaches and implement Strassen multiplication in Python.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 74,
+      "text": "Design a real-time anomaly detection system for IoT sensors using streaming ML and edge computing.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 75,
+      "text": "Research the state-of-the-art in large language model alignment and evaluate different approaches to RLHF.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 76,
+      "text": "Architect a zero-knowledge proof system for privacy-preserving identity verification at national scale.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 77,
+      "text": "Design and implement a distributed key-value store with linearizable consistency and automatic sharding.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 78,
+      "text": "Analyze the performance characteristics of different caching strategies and design an adaptive caching system.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 79,
+      "text": "Implement a full static analysis tool for detecting common security vulnerabilities in Python code.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 80,
+      "text": "Design a federated learning system that preserves privacy while training on distributed healthcare data.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 81,
+      "text": "Compare and contrast reinforcement learning algorithms: Q-learning, PPO, SAC, and TD3 with mathematical derivations.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 82,
+      "text": "Design a semantic search engine using vector embeddings with approximate nearest neighbor search at billion-scale.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 83,
+      "text": "Implement a minimax algorithm with alpha-beta pruning for a complex board game and analyze its game tree complexity.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 84,
+      "text": "Architect a global CDN with intelligent traffic routing, DDoS mitigation, and edge caching for 10 billion requests per day.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 85,
+      "text": "Research and compare approaches to continual learning to prevent catastrophic forgetting in neural networks.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 86,
+      "text": "Design a multi-agent reinforcement learning system for autonomous vehicle coordination at intersections.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 87,
+      "text": "Implement a symbolic regression system using genetic programming to discover mathematical equations from data.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 88,
+      "text": "Analyze trade-offs in approximate computing and design a framework for accuracy-energy optimization.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 89,
+      "text": "Design a causal inference framework for estimating treatment effects in observational healthcare data.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 90,
+      "text": "Research the mathematical foundations of attention mechanisms and derive multi-head attention from first principles.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 91,
+      "text": "Implement a complete Ray tracer with global illumination, subsurface scattering, and spectral rendering.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 92,
+      "text": "Design a fault-tolerant distributed stream processing system with exactly-once semantics.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 93,
+      "text": "Analyze and implement various numerical optimization methods: gradient descent variants, Newton methods, BFGS.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 94,
+      "text": "Design a graph neural network for molecular property prediction and explain the theoretical basis.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 95,
+      "text": "Research and implement a variational autoencoder with disentangled representations.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 96,
+      "text": "Architect a real-time collaborative editing system with operational transformation or CRDTs.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 97,
+      "text": "Design an adaptive bitrate streaming algorithm optimizing for quality of experience under varying network conditions.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 98,
+      "text": "Implement a protein folding prediction model using deep learning and analyze its computational requirements.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 99,
+      "text": "Research the latest advances in diffusion models and compare them to GANs for image synthesis.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    },
+    {
+      "id": 100,
+      "text": "Design a comprehensive ML observability platform with drift detection, explainability, and automated retraining.",
+      "category": "complex",
+      "expected_complexity_min": 7,
+      "expected_complexity_max": 10
+    }
+  ]
+}

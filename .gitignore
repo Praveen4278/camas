@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# SQLite locks
+*.db-shm
+*.db-wal
+
+# Logs
+camas.log
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
