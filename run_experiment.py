@@ -104,10 +104,14 @@ def _generate_reports(config: dict, run_ids: dict) -> None:
     out_dir = Path(config["experiment"]["results_dir"])
     viz_dir = Path(config["experiment"]["visualization_dir"])
 
-    all_perf    = ma.get_all_performance()
-    all_routing = ma.get_all_routing()
-    all_energy  = ma.get_all_energy()
-    all_carbon  = ma.get_all_carbon()
+    all_perf    = [r for r in ma.get_all_performance()
+                   if r["run_id"] in set(run_ids.values())]
+    all_routing = [r for r in ma.get_all_routing()
+                   if r["run_id"] in set(run_ids.values())]
+    all_energy  = [r for r in ma.get_all_energy()
+                   if r["run_id"] in set(run_ids.values())]
+    all_carbon  = [r for r in ma.get_all_carbon()
+                   if r["run_id"] in set(run_ids.values())]
 
     summaries = {}
     for mode in ["baseline", "camas"]:

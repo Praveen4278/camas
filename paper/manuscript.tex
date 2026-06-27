@@ -32,8 +32,8 @@ routes inference requests across three model tiers—phi3, llama3.2:3b, and
 llama3.2:8b—based on query complexity, and schedules agents into sleep states
 during idle periods to reduce idle energy consumption. Evaluated on a 100-prompt
 benchmark spanning simple, medium, and complex tasks, CAMAS reduces total energy
-consumption by 41.0\%, CO\textsubscript{2} emissions by 41.0\%, operational
-cost by 46.9\%, and average latency by 30.3\% compared to a static single-model
+consumption by 53.5\%, CO\textsubscript{2} emissions by 53.5\%, operational
+cost by 46.9\%, and average latency by 33.8\% compared to a static single-model
 baseline, with all improvements statistically significant ($p < 0.001$,
 Wilcoxon signed-rank test).
 \end{abstract}
@@ -167,10 +167,10 @@ significant improvement ($p < 0.001$).
 \toprule
 \textbf{Metric} & \textbf{Baseline} & \textbf{CAMAS} & \textbf{$\Delta$} & \textbf{p} \\
 \midrule
-Latency (ms)      & 2218.9 $\pm$ 81.3  & 1545.7 $\pm$ 152.3 & $-$30.3\% & $<$0.001 \\
-Energy/query (kWh)& 8.9e-5 $\pm$ 3e-6  & 5.3e-5 $\pm$ 8e-6  & $-$41.0\% & $<$0.001 \\
-CO$_2$/query (g)  & 0.0357 $\pm$ 0.001 & 0.0211 $\pm$ 0.003 & $-$41.0\% & $<$0.001 \\
-Cost/query (USD)  & 3.3e-5 $\pm$ 0      & 1.8e-5 $\pm$ 3e-6  & $-$46.9\% & $<$0.001 \\
+Latency (ms)      & 2287.9 $\pm$ 89.4  & 1514.8 $\pm$ 146.6 & $-$33.8\% & $<$0.001 \\
+Energy/query (kWh)& 1.11e-4 $\pm$ 4e-6 & 5.2e-5 $\pm$ 7e-6  & $-$53.5\% & $<$0.001 \\
+CO$_2$/query (g)  & 0.0446 $\pm$ 0.001 & 0.0207 $\pm$ 0.003 & $-$53.5\% & $<$0.001 \\
+Cost/query (USD)  & 3.3e-5 $\pm$ 0     & 1.8e-5 $\pm$ 3e-6  & $-$46.9\% & $<$0.001 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -305,7 +305,7 @@ linearly with workload size, confirming predictable system behaviour.
 
 CAMAS demonstrates that dynamic model routing and sleep-state scheduling can
 meaningfully reduce the energy and carbon footprint of LLM inference without
-sacrificing accuracy on the task distribution. A 41\% reduction in energy and
+sacrificing accuracy on the task distribution. A 53.5\% reduction in energy and
 CO\textsubscript{2}, and a 47\% reduction in cost, achieved through a
 lightweight keyword-based planner and a three-tier routing policy, suggests
 that carbon-aware orchestration is a practical and impactful direction for
