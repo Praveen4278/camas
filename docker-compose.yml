@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  camas:
+    build: .
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+    volumes:
+      - ./database:/app/database
+      - ./reports:/app/reports
+      - ./visualizations:/app/visualizations
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "uvicorn app:app --host 0.0.0.0 --port 8000"
+
+  # Optional: Ollama service for local LLM serving
+  # Uncomment to enable local model serving
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   environment:
+  #     - OLLAMA_HOST=0.0.0.0:11434
+
+# volumes:
+#   ollama_data:

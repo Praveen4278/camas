@@ -13,6 +13,7 @@ venv/
 
 # Logs
 camas.log
+/tmp/
 
 # macOS
 .DS_Store
@@ -20,3 +21,17 @@ camas.log
 # IDE
 .vscode/
 .idea/
+
+# Node/Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Environment
+.env
+.env.local
+
+# OS
+Thumbs.db
+.vercel
