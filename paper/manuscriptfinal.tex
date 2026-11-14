@@ -9,7 +9,11 @@
 \usepackage{multirow}
 \usepackage{url}
 \usepackage{balance}
+\usepackage{placeins}
+\usepackage{adjustbox}
 \usepackage{hyperref}
+
+\raggedbottom
 
 \graphicspath{{figures/}}
 
@@ -18,11 +22,11 @@
 \title{CAMAS: A Carbon-Aware Multi-Agent System for\\
 Energy-Efficient LLM Orchestration}
 
-\author{\IEEEauthorblockN{Praveen Raj}
-\IEEEauthorblockA{\textit{Department of Computer Science}\\
-\textit{[Institution Name]}\\
-[City, Country]\\
-[email@institution.edu]}
+\author{\IEEEauthorblockN{G Praveenraj}
+\IEEEauthorblockA{\textit{Bachelor of Technology -- Artificial Intelligence and Data Science}\\
+\textit{Rajalakshmi Institute of Technology}\\
+Chennai, India\\
+gpraveenraj03@gmail.com}
 }
 
 \maketitle
@@ -198,47 +202,85 @@ CAMAS is the first system to synthesize all four dimensions—routing, carbon
 prediction, energy monitoring, and idle power management—into a single
 operational framework for agentic LLM orchestration.
 
-\begin{table*}[!t]
+\begin{table*}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
-\caption{Literature Gap Analysis: Existing approaches address isolated aspects
-of sustainable AI; CAMAS is the first unified framework covering all five
-dimensions simultaneously.}
+\caption{Feature Comparison: Existing approaches address isolated aspects of
+sustainable AI. CAMAS is the first unified framework combining all capabilities
+in a single operational system. (\checkmark\ = fully supported;
+P = partial; \texttimes\ = not supported.)}
 \label{tab:gap}
-\begin{tabular}{@{}lccccc@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lcccccc@{}}
 \toprule
-\textbf{Capability} & \textbf{Green AI} & \textbf{Carbon-Aware Comp.}
-  & \textbf{FrugalGPT / RouteLLM} & \textbf{Agentic Systems} & \textbf{CAMAS (Ours)} \\
+\textbf{Feature} & \textbf{Green AI} & \textbf{Agentic AI}
+  & \textbf{Carbon-Aware Comp.} & \textbf{FrugalGPT / RouteLLM}
+  & \textbf{GreenGPU / A-LEMS} & \textbf{CAMAS (Ours)} \\
 \midrule
-Energy Monitoring        & \checkmark & Partial    & \texttimes & \texttimes & \checkmark \\
-Carbon Prediction        & \texttimes & \checkmark & \texttimes & \texttimes & \checkmark \\
-Dynamic Routing          & \texttimes & \texttimes & \checkmark & Partial    & \checkmark \\
-Resource Allocation      & Partial    & Partial    & \texttimes & \texttimes & \checkmark \\
-Sleep-State Scheduling   & \texttimes & \texttimes & \texttimes & \texttimes & \checkmark \\
-Multi-Agent Architecture & \texttimes & \texttimes & \texttimes & \checkmark & \checkmark \\
-\textbf{Unified Framework} & \texttimes & \texttimes & \texttimes & \texttimes & \checkmark \\
+Dynamic Routing          & \texttimes & P          & \texttimes & \checkmark & \texttimes & \checkmark \\
+Carbon Prediction        & \texttimes & \texttimes & \checkmark & \texttimes & \texttimes & \checkmark \\
+Sleep-State Control      & \texttimes & \texttimes & \texttimes & \texttimes & P          & \checkmark \\
+Resource Allocation      & P          & \texttimes & P          & \texttimes & \texttimes & \checkmark \\
+Energy Monitoring        & \checkmark & \texttimes & P          & \texttimes & \checkmark & \checkmark \\
+Multi-Agent Architecture & \texttimes & \checkmark & \texttimes & \texttimes & \texttimes & \checkmark \\
+\textbf{Unified Framework} & \texttimes & \texttimes & \texttimes & \texttimes & \texttimes & \checkmark \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}
 
 % ============================================================
 \section{The CAMAS Framework}
 
+\subsection{Notation}
+
+Table~\ref{tab:notation} summarises the mathematical symbols used throughout
+this section.
+
+\begin{table}[!htbp]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\caption{Mathematical Notation}
+\label{tab:notation}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Symbol} &amp; \textbf{Definition} \\
+\midrule
+$q$                        &amp; Input user query \\
+$s(q)$                     &amp; Complexity score of query $q$ (range 1--10) \\
+$K_H,\, K_M,\, K_L$        &amp; High-, medium-, low-complexity keyword hit counts \\
+$\mathcal{M}$              &amp; Set of available models $\{m_s, m_m, m_l\}$ \\
+$m_s,\, m_m,\, m_l$        &amp; Small, medium, and large model respectively \\
+$E(m)$                     &amp; Expected inference energy of model $m$ (kWh) \\
+$C(t)$                     &amp; Real-time grid carbon intensity at time $t$ (gCO$_2$eq/kWh) \\
+$L(m)$                     &amp; Expected inference latency of model $m$ (ms) \\
+$\tau$                     &amp; Minimum accuracy threshold set by the Planner \\
+$\alpha,\beta,\gamma,\delta$ &amp; Operator-tunable objective weights \\
+$P_{\text{active}}(m)$     &amp; Idle VRAM power draw of model $m$ (W) \\
+$P_{\text{sleep}}$         &amp; RAM-resident idle power draw (W) \\
+$N$                        &amp; Total number of agents in the system \\
+$k$                        &amp; Number of currently active agents ($k \leq N$) \\
+$\tau_{\text{idle}}$       &amp; Idle timeout before sleep transition (s) \\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
 \subsection{System Architecture}
 
 CAMAS replaces the conventional always-on multi-agent topology with a reactive
-pipeline driven by real-time hardware telemetry and grid carbon data.
-Figure~\ref{fig:arch} shows the seven-node LangGraph state machine that
-implements this pipeline.
+pipeline driven by real-time hardware telemetry and grid carbon data. Figure~\ref{fig:arch} shows the system architecture.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\linewidth]{Figure1.png}
-\caption{CAMAS system architecture. Seven agents form a directed LangGraph
-pipeline. The Decision Feedback Loop forces the Resource Allocator to consult
-the Energy Monitor and Carbon Predictor before granting GPU access. Idle agents
-are transitioned to sleep state by the Power Management Controller.}
+\includegraphics[width=\linewidth]{camas_architecture.png}
+\caption{CAMAS: Carbon-Aware Multi-Agent System Architecture}
 \label{fig:arch}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{camas_workflow.png}
+\caption{Figure 2: CAMAS Operational Workflow for Carbon-Aware Multi-Agent Decision Making}
+\label{fig:workflow}
 \end{figure}
 
 The pipeline executes as follows. A user query enters the \textbf{Planner
@@ -324,6 +366,14 @@ Thresholds 2.3 and 3.8 were selected to align with the empirical score
 distribution of the benchmark: simple prompts score 1.0--2.5, medium prompts
 2.3--4.8, and complex prompts 3.8--10.0. This produces a routing split of
 approximately 25\% / 29\% / 46\% across the three tiers.
+
+\textbf{Computational complexity.} The orchestration overhead introduced by
+CAMAS is linear in the number of active agents. Each cycle executes a fixed
+sequence of planning, routing, energy monitoring, and sleep scheduling
+operations, each $O(1)$ per agent. The overall per-query orchestration
+complexity is therefore $O(N)$, where $N$ is the number of active agents.
+In practice, $N \leq 7$ in the current prototype, making the overhead
+constant and negligible relative to inference latency.
 
 \subsection{Agent Power Management and Sleep-State Scheduling}
 
@@ -432,14 +482,14 @@ Table~\ref{tab:main} presents the primary comparison between the static
 baseline and CAMAS across all metrics. All improvements are statistically
 significant at $p < 0.001$.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \caption{Primary Experimental Results. Values reported as Mean $\pm$ 95\% CI
 ($n = 100$ queries per mode). p-values from Wilcoxon signed-rank test
 (two-tailed).}
 \label{tab:main}
-\begin{tabular}{@{}lrrrr@{}}
+\begin{adjustbox}{max width=\linewidth}\begin{tabular}{@{}lrrrr@{}}
 \toprule
 \textbf{Metric} & \textbf{Baseline} & \textbf{CAMAS} & \textbf{$\Delta$} & \textbf{p} \\
 \midrule
@@ -465,7 +515,7 @@ Total CO\textsubscript{2} (g) & 4.4593 & 2.0726 & $-53.5\%$ & --- \\
 Total Cost (USD)    & 0.003300 & 0.001754 & $-46.9\%$ & --- \\
 Benchmark size      & 100      & 100      & ---        & --- \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
 
 Table~\ref{tab:variability} reports per-metric standard deviations. The higher
@@ -476,14 +526,14 @@ response times (phi3: 400--800\,ms; llama3.2:3b: 800--1600\,ms;
 llama3.2:8b: 1500--3000\,ms), producing a wider latency distribution while
 lowering the mean.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \caption{Per-Metric Variability. Values reported as Mean $\pm$ Standard
 Deviation ($n = 100$). Higher CAMAS latency std.\ dev.\ reflects intentional
 multi-tier routing.}
 \label{tab:variability}
-\begin{tabular}{@{}lrr@{}}
+\begin{adjustbox}{max width=\linewidth}\begin{tabular}{@{}lrr@{}}
 \toprule
 \textbf{Metric} & \textbf{Baseline} & \textbf{CAMAS} \\
 \midrule
@@ -494,8 +544,10 @@ CO\textsubscript{2}/query (g) & $0.0446 \pm 0.0073$ & $0.0207 \pm 0.0149$ \\
 Cost/query (USD)     & $3.3 \times 10^{-5} \pm 0$
                      & $1.8 \times 10^{-5} \pm 1.4 \times 10^{-5}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
+
+\FloatBarrier
 
 \subsection{Energy and Carbon Emissions}
 
@@ -508,7 +560,7 @@ The 400\,gCO\textsubscript{2}/kWh intensity figure is the international average
 used in prior literature~\cite{kaufmann2023carbon} and is consistent with
 what a reviewer would expect for a system-level estimate.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig1_energy_comparison.png}
 \caption{Total energy (left) and per-query average energy (right) with
@@ -517,7 +569,7 @@ metrics through three-tier model routing.}
 \label{fig:energy}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig2_carbon_comparison.png}
 \caption{Total and per-query CO\textsubscript{2} emissions at 400\,gCO$_2$/kWh
@@ -535,7 +587,7 @@ llama3.2:8b on simple and medium queries. The boxplot confirms that the
 CAMAS median is substantially lower, while the wider interquartile range
 reflects multi-tier dispatch.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig3_latency_comparison.png}
 \caption{Average latency with $\pm$1 std.\ dev.\ (left) and latency
@@ -554,7 +606,7 @@ the token rate differential between phi3 and llama3.2:8b is
 7.5$\times$, amplifying savings from routing simple queries to the cheapest
 model.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig4_cost_comparison.png}
 \caption{Total cost (left) and per-query cost with $\pm$1 std.\ dev.\ error
@@ -570,12 +622,12 @@ benchmark queries. CAMAS routed 25 queries (25\%) to phi3, 29 queries (29\%)
 to llama3.2:3b, and 46 queries (46\%) to llama3.2:8b. Table~\ref{tab:routing}
 details this distribution.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \caption{CAMAS Routing Distribution ($n = 100$ queries).}
 \label{tab:routing}
-\begin{tabular}{@{}lrr@{}}
+\begin{adjustbox}{max width=\linewidth}\begin{tabular}{@{}lrr@{}}
 \toprule
 \textbf{Model} & \textbf{Queries Routed} & \textbf{Percentage} \\
 \midrule
@@ -585,10 +637,10 @@ llama3.2:8b    & 46 & 46.0\% \\
 \midrule
 \textbf{Total} & \textbf{100} & \textbf{100\%} \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig5_routing_distribution.png}
 \caption{CAMAS routing distribution across 100 benchmark queries (left: count
@@ -615,7 +667,7 @@ average duration of 47.9\,s and 8 corresponding WAKEUP events with an average
 overhead of 1.0\,s. Idle time constituted approximately 2.6\% of total wall
 time.
 
-\begin{figure}[!t]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{fig6_sleep_statistics.png}
 \caption{Power management statistics: active vs.\ sleep time stacked bar
@@ -632,13 +684,13 @@ Table~\ref{tab:ablation} presents results from the ablation study ($n = 50$
 queries per condition, inter-batch sleep disabled for comparability). Four
 conditions isolate the contribution of each CAMAS component.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \caption{Ablation Study Results ($n = 50$ queries per condition). Energy
 reductions are relative to the static baseline.}
 \label{tab:ablation}
-\begin{tabular}{@{}lrrr@{}}
+\begin{adjustbox}{max width=\linewidth}\begin{tabular}{@{}lrrr@{}}
 \toprule
 \textbf{Configuration} & \textbf{Avg Lat.\ (ms)} & \textbf{Total Energy (kWh)} & \textbf{$\Delta$ Energy} \\
 \midrule
@@ -647,7 +699,7 @@ CAMAS — routing OFF   & 2147.3 & 0.004324 & $-7.4\%$  \\
 CAMAS — sleep OFF     & 1018.1 & 0.001178 & $-74.8\%$ \\
 Full CAMAS            & 1016.3 & 0.001182 & $-74.7\%$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
 
 Three findings are significant. First, disabling routing alone reduces energy
@@ -668,13 +720,13 @@ performance. Average latency increases modestly with workload size because
 larger workloads include proportionally more complex queries from later in the
 benchmark.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \caption{CAMAS Scalability Analysis. Energy scales linearly ($r = 0.999$) with
 workload size.}
 \label{tab:scalability}
-\begin{tabular}{@{}rrrr@{}}
+\begin{adjustbox}{max width=\linewidth}\begin{tabular}{@{}rrrr@{}}
 \toprule
 \textbf{Queries} & \textbf{Avg Latency (ms)} & \textbf{Total Energy (kWh)} & \textbf{Total CO\textsubscript{2} (g)} \\
 \midrule
@@ -683,8 +735,37 @@ workload size.}
  50  &  986.5 & 0.001148 & 0.4594 \\
 100  & 1520.2 & 0.005188 & 2.0752 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
+
+% ============================================================
+\subsection{Reproducibility}
+
+All experiments were conducted on a single Apple M-series workstation running
+macOS. The software environment is as follows:
+
+\begin{itemize}
+    \item \textbf{Python:} 3.11.x
+    \item \textbf{LangGraph:} 0.2.x
+    \item \textbf{Ollama:} 0.3.x (local inference server)
+    \item \textbf{Models:} phi3 (3.8B), llama3.2:3b, llama3.2:8b — all
+          pulled from the official Ollama model registry
+    \item \textbf{Database:} SQLite 3 (via Python \texttt{sqlite3} stdlib)
+    \item \textbf{Benchmark:} 100 prompts across 3 complexity tiers
+          (20 simple / 40 medium / 40 complex), available at
+          \texttt{experiments/prompts.json} in the repository
+    \item \textbf{Experimental runs:} 1 baseline run + 1 CAMAS run
+          (100 queries each); 4 ablation conditions (50 queries each);
+          4 scalability runs (10, 25, 50, 100 queries)
+    \item \textbf{Random seed:} Not applicable — mock latency uses
+          \texttt{random.uniform} with no fixed seed; results represent
+          one representative run per condition
+    \item \textbf{Code and data:} Publicly available at
+          \url{https://github.com/Praveen4278/camas} under MIT licence
+          (tag \texttt{v1.1}). The benchmark dataset
+          (\texttt{experiments/prompts.json}) is released alongside the
+          code to enable full reproduction.
+\end{itemize}
 
 % ============================================================
 \section{Discussion}
