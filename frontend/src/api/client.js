@@ -71,7 +71,36 @@ export const API = {
       console.log(`[API] Attempting to call backend for ${mode} query...`)
       const response = await client.post('/query', { query, mode })
       console.log(`[API] Backend response received:`, response)
-      return response
+      
+      // Extract and map backend response to expected format
+      const data = response.data || response
+      const mapped = {
+        query: data.query || query,
+        mode: mode,
+        model: data.model_selected || data.model || (mode === 'baseline' ? 'llama3.2:8b' : 'phi3'),
+        complexity: data.complexity_score || data.complexity || 5,
+        response: data.response || '',
+        latency_ms: data.latency_ms || 1500,
+        energy_kwh: data.energy_kwh || 0.00005,
+        co2_g: data.co2_grams || data.co2_g || 0.02,
+        cost_usd: data.cost_usd || (data.energy_kwh * 0.15) || 0.000075,
+        baseline_latency_ms: data.baseline_latency_ms || 2500,
+        energy_savings_percent: data.energy_savings_percent !== undefined ? data.energy_savings_percent : 0,
+        co2_savings_percent: data.co2_savings_percent !== undefined ? data.co2_savings_percent : 0,
+        latency_savings_ms: data.latency_savings_ms !== undefined ? data.latency_savings_ms : 0,
+        cost_savings_usd: data.cost_savings_usd !== undefined ? data.cost_savings_usd : 0,
+        routing_reason: data.routing_reason || (mode === 'baseline' 
+          ? 'Baseline always uses llama3.2:8b'
+          : `CAMAS routed to ${data.model_selected}`),
+      }
+      
+      console.log(`[API] Mapped response for mode="${mode}":`, {
+        energy_savings_percent: mapped.energy_savings_percent,
+        model: mapped.model,
+        complexity: mapped.complexity,
+        raw_data: data
+      })
+      return mapped
     } catch (error) {
       console.warn(`[API] Backend failed (${error.message}), using mock data`)
       // Simulate network delay
@@ -88,7 +117,8 @@ export const API = {
   // Health check
   health: async () => {
     try {
-      return await client.get('/health')
+      const response = await client.get('/health')
+      return response.data || response
     } catch {
       return { status: 'unavailable' }
     }

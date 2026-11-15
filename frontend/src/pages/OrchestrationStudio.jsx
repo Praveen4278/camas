@@ -8,7 +8,7 @@ export default function OrchestrationStudio() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const handleExecute = async (mode) => {
+  const handleExecute = async () => {
     if (!query.trim()) {
       setError('Please enter a query')
       return
@@ -16,48 +16,29 @@ export default function OrchestrationStudio() {
 
     setError(null)
     setLoading(true)
-
+    
     try {
-      console.log(`Executing ${mode} query:`, query)
-      const response = await API.executeQuery(query, mode)
-      console.log(`Got response for ${mode}:`, response)
+      // Run both queries in parallel
+      console.log('Executing both baseline and CAMAS queries for:', query)
+      const [baselineResp, camasResp] = await Promise.all([
+        API.executeQuery(query, 'baseline'),
+        API.executeQuery(query, 'camas')
+      ])
       
-      if (mode === 'baseline') {
-        setBaselineResult(response)
-      } else {
-        setCamasResult(response)
-      }
+      console.log('Got both responses:', { baseline: baselineResp, camas: camasResp })
+      console.log('Energy savings: Baseline uses', baselineResp.model, '-> CAMAS uses', camasResp.model)
+      console.log('Energy reduction:', camasResp.energy_savings_percent, '%')
+      setBaselineResult(baselineResp)
+      setCamasResult(camasResp)
     } catch (err) {
-      console.error(`Error executing ${mode}:`, err)
-      
-      // Use mock data as fallback
-      const mockResult = {
-        query: query,
-        mode: mode,
-        model: mode === 'baseline' ? 'llama3.2:8b' : 'phi3',
-        complexity: 5 + Math.random() * 5,
-        response: `This is a demonstration response from ${mode === 'baseline' ? 'baseline' : 'CAMAS'} routing.`,
-        latency_ms: mode === 'baseline' ? 2500 + Math.random() * 1000 : 1500 + Math.random() * 500,
-        energy_kwh: mode === 'baseline' ? 0.0001 : 0.00005,
-        co2_g: mode === 'baseline' ? 0.04 : 0.02,
-        cost_usd: mode === 'baseline' ? 0.0015 : 0.0007,
-        routing_reason: mode === 'baseline' ? 'Baseline always uses llama3.2:8b' : 'CAMAS selected model by complexity',
-      }
-      console.log(`Using mock data for ${mode}:`, mockResult)
-      
-      if (mode === 'baseline') {
-        setBaselineResult(mockResult)
-      } else {
-        setCamasResult(mockResult)
-      }
+      console.error('Error executing queries:', err)
+      setError(`Error: ${err.message}`)
     } finally {
       setLoading(false)
     }
   }
 
-  const energyReduction = baselineResult && camasResult
-    ? (((baselineResult.energy_kwh - camasResult.energy_kwh) / baselineResult.energy_kwh * 100).toFixed(1))
-    : 0
+  const energyReduction = camasResult?.energy_savings_percent || 0
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-950 to-gray-900 py-12">
@@ -89,7 +70,7 @@ export default function OrchestrationStudio() {
 
           <div className="grid md:grid-cols-2 gap-4">
             <button
-              onClick={() => handleExecute('baseline')}
+              onClick={() => handleExecute()}
               disabled={loading}
               className="px-6 py-4 bg-gray-800 border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-700 disabled:opacity-50 transition flex items-center justify-center gap-2 text-lg"
             >
@@ -97,7 +78,7 @@ export default function OrchestrationStudio() {
               ⚙️ Run Baseline (Heavy Model)
             </button>
             <button
-              onClick={() => handleExecute('camas')}
+              onClick={() => handleExecute()}
               disabled={loading}
               className="px-6 py-4 bg-accent text-darker font-bold rounded-lg hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 transition flex items-center justify-center gap-2 text-lg"
             >
@@ -107,133 +88,124 @@ export default function OrchestrationStudio() {
           </div>
         </div>
 
-        {baselineResult && camasResult && (
+        {(baselineResult || camasResult) && (
           <div className="space-y-8">
-            {/* Results Summary */}
-            <div className="bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold mb-6 text-center">📊 Comparison Results</h2>
-              
-              <div className="grid md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
-                  <p className="text-accent text-4xl font-bold">{energyReduction}%</p>
-                  <p className="text-gray-400 text-sm mt-2">Energy Reduction</p>
-                  <p className="text-xs text-gray-500 mt-2">CAMAS uses less energy</p>
-                </div>
-                <div className="bg-gray-900/80 border border-green-500/30 rounded-lg p-6 text-center">
-                  <p className="text-green-400 text-4xl font-bold">{(((baselineResult.co2_g - camasResult.co2_g) / baselineResult.co2_g * 100).toFixed(1))}%</p>
-                  <p className="text-gray-400 text-sm mt-2">Carbon Cut</p>
-                  <p className="text-xs text-gray-500 mt-2">{(baselineResult.co2_g - camasResult.co2_g).toFixed(4)}g CO₂ saved</p>
-                </div>
-                <div className="bg-gray-900/80 border border-blue-500/30 rounded-lg p-6 text-center">
-                  <p className="text-blue-400 text-4xl font-bold">${(baselineResult.cost_usd - camasResult.cost_usd).toFixed(6)}</p>
-                  <p className="text-gray-400 text-sm mt-2">Cost Saved</p>
-                  <p className="text-xs text-gray-500 mt-2">Per query savings</p>
-                </div>
-                <div className="bg-gray-900/80 border border-purple-500/30 rounded-lg p-6 text-center">
-                  <p className="text-purple-400 text-4xl font-bold">{(baselineResult.latency_ms - camasResult.latency_ms).toFixed(0)}ms</p>
-                  <p className="text-gray-400 text-sm mt-2">Latency Diff</p>
-                  <p className="text-xs text-gray-500 mt-2">Response time improvement</p>
-                </div>
-              </div>
-
-              {/* Model Selection Display */}
-              <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-800">
-                <div>
-                  <h3 className="font-bold text-lg mb-3">⚙️ Baseline Routing</h3>
-                  <div className="bg-gray-900 border border-gray-800 rounded-lg p-4 space-y-2">
-                    <p className="text-sm text-gray-400">Model: <span className="font-bold text-white">{baselineResult.model}</span></p>
-                    <p className="text-sm text-gray-400">Query Complexity: <span className="font-bold text-white">{baselineResult.complexity.toFixed(1)}/10</span></p>
-                    <p className="text-sm text-gray-400">Decision: <span className="font-semibold text-yellow-400">{baselineResult.routing_reason}</span></p>
+            {/* Comparison Results - Show when both exist */}
+            {baselineResult && camasResult && (
+              <div className="bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 rounded-2xl p-8">
+                <h2 className="text-3xl font-bold mb-6 text-center">📊 Comparison Results</h2>
+                
+                <div className="grid md:grid-cols-4 gap-4 mb-8">
+                  <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
+                    <p className="text-accent text-4xl font-bold">{camasResult.energy_savings_percent}%</p>
+                    <p className="text-gray-400 text-sm mt-2">Energy Reduction</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-green-500/30 rounded-lg p-6 text-center">
+                    <p className="text-green-400 text-4xl font-bold">{camasResult.co2_savings_percent}%</p>
+                    <p className="text-gray-400 text-sm mt-2">Carbon Cut</p>
+                    <p className="text-xs text-gray-500 mt-2">{(baselineResult.co2_g - camasResult.co2_g).toFixed(4)}g saved</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-blue-500/30 rounded-lg p-6 text-center">
+                    <p className="text-blue-400 text-4xl font-bold">${camasResult.cost_savings_usd.toFixed(6)}</p>
+                    <p className="text-gray-400 text-sm mt-2">Cost Saved</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-purple-500/30 rounded-lg p-6 text-center">
+                    <p className="text-purple-400 text-4xl font-bold">{camasResult.latency_savings_ms}ms</p>
+                    <p className="text-gray-400 text-sm mt-2">Latency Improvement</p>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg mb-3 text-accent">✨ CAMAS Routing</h3>
-                  <div className="bg-gray-900 border border-accent/30 rounded-lg p-4 space-y-2">
-                    <p className="text-sm text-gray-400">Model: <span className="font-bold text-accent">{camasResult.model}</span></p>
-                    <p className="text-sm text-gray-400">Query Complexity: <span className="font-bold text-accent">{camasResult.complexity.toFixed(1)}/10</span></p>
-                    <p className="text-sm text-gray-400">Decision: <span className="font-semibold text-accent">{camasResult.routing_reason}</span></p>
+
+                {/* Model Comparison */}
+                <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-gray-800">
+                  <div>
+                    <h3 className="font-bold text-lg mb-3">⚙️ Baseline</h3>
+                    <div className="bg-gray-900 border border-gray-800 rounded-lg p-4 space-y-2">
+                      <p className="text-sm"><span className="text-gray-400">Model:</span> <span className="font-bold text-white">{baselineResult.model}</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Complexity:</span> <span className="font-bold">{baselineResult.complexity.toFixed(1)}/10</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Energy:</span> <span className="font-bold text-yellow-400">{(baselineResult.energy_kwh * 1000000).toFixed(2)} µkWh</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Latency:</span> <span className="font-bold text-yellow-400">{baselineResult.latency_ms}ms</span></p>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-3 text-accent">✨ CAMAS</h3>
+                    <div className="bg-gray-900 border border-accent/30 rounded-lg p-4 space-y-2">
+                      <p className="text-sm"><span className="text-gray-400">Model:</span> <span className="font-bold text-accent">{camasResult.model}</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Complexity:</span> <span className="font-bold text-accent">{camasResult.complexity.toFixed(1)}/10</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Energy:</span> <span className="font-bold text-green-400">{(camasResult.energy_kwh * 1000000).toFixed(2)} µkWh</span></p>
+                      <p className="text-sm"><span className="text-gray-400">Latency:</span> <span className="font-bold text-green-400">{camasResult.latency_ms}ms</span></p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            {/* Detailed Metrics Table */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 overflow-x-auto">
-              <h3 className="font-bold text-xl mb-6">📈 Detailed Metrics</h3>
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-gray-800">
-                    <th className="text-left py-4 px-4 font-semibold text-gray-300">Metric</th>
-                    <th className="text-right py-4 px-4 font-semibold text-gray-300">Baseline</th>
-                    <th className="text-right py-4 px-4 font-semibold text-gray-300">CAMAS</th>
-                    <th className="text-right py-4 px-4 font-semibold text-accent">Improvement</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-800/50 hover:bg-gray-800/20">
-                    <td className="py-4 px-4 font-medium">⏱️ Latency</td>
-                    <td className="text-right py-4 px-4">{baselineResult.latency_ms.toFixed(0)} ms</td>
-                    <td className="text-right py-4 px-4">{camasResult.latency_ms.toFixed(0)} ms</td>
-                    <td className="text-right py-4 px-4 text-accent font-semibold">↓ {((1 - camasResult.latency_ms / baselineResult.latency_ms) * 100).toFixed(1)}%</td>
-                  </tr>
-                  <tr className="border-b border-gray-800/50 hover:bg-gray-800/20">
-                    <td className="py-4 px-4 font-medium">⚡ Energy</td>
-                    <td className="text-right py-4 px-4">{(baselineResult.energy_kwh * 1000000).toFixed(2)} µkWh</td>
-                    <td className="text-right py-4 px-4">{(camasResult.energy_kwh * 1000000).toFixed(2)} µkWh</td>
-                    <td className="text-right py-4 px-4 text-accent font-semibold">↓ {energyReduction}%</td>
-                  </tr>
-                  <tr className="border-b border-gray-800/50 hover:bg-gray-800/20">
-                    <td className="py-4 px-4 font-medium">🌍 Carbon Emissions</td>
-                    <td className="text-right py-4 px-4">{(baselineResult.co2_g).toFixed(6)} g CO₂</td>
-                    <td className="text-right py-4 px-4">{(camasResult.co2_g).toFixed(6)} g CO₂</td>
-                    <td className="text-right py-4 px-4 text-accent font-semibold">↓ {((1 - camasResult.co2_g / baselineResult.co2_g) * 100).toFixed(1)}%</td>
-                  </tr>
-                  <tr className="border-b border-gray-800/50 hover:bg-gray-800/20">
-                    <td className="py-4 px-4 font-medium">💰 Cost</td>
-                    <td className="text-right py-4 px-4">${baselineResult.cost_usd.toFixed(8)}</td>
-                    <td className="text-right py-4 px-4">${camasResult.cost_usd.toFixed(8)}</td>
-                    <td className="text-right py-4 px-4 text-accent font-semibold">↓ {((1 - camasResult.cost_usd / baselineResult.cost_usd) * 100).toFixed(1)}%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Response Display */}
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6">
-                <h3 className="font-bold mb-4">⚙️ Baseline Response</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{baselineResult.response}</p>
-              </div>
-              <div className="bg-gray-900/50 border border-accent/30 rounded-lg p-6 bg-accent/5">
-                <h3 className="font-bold mb-4 text-accent">✨ CAMAS Response</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{camasResult.response}</p>
-              </div>
-            </div>
-
-            {/* Scale Impact */}
-            <div className="bg-gradient-to-r from-green-500/10 via-accent/5 to-blue-500/10 border border-gray-800 rounded-xl p-8">
-              <h3 className="font-bold text-xl mb-4">📊 At Scale (1 Million Queries/Day)</h3>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <p className="text-3xl font-bold text-accent">${((baselineResult.cost_usd - camasResult.cost_usd) * 1000000 / 1000000).toFixed(2)}M+</p>
-                  <p className="text-gray-400 mt-2">Annual Savings</p>
+            {/* Single Result - CAMAS Only */}
+            {camasResult && !baselineResult && (
+              <div className="bg-gradient-to-br from-accent/15 to-accent/5 border border-accent/30 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold mb-6">✨ CAMAS Routing Result</h2>
+                <div className="grid md:grid-cols-4 gap-4">
+                  <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
+                    <p className="text-accent text-2xl font-bold">{camasResult.model}</p>
+                    <p className="text-gray-400 text-sm mt-2">Selected Model</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
+                    <p className="text-accent text-2xl font-bold">{camasResult.complexity.toFixed(1)}</p>
+                    <p className="text-gray-400 text-sm mt-2">Complexity</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
+                    <p className="text-accent text-2xl font-bold">{(camasResult.energy_kwh * 1000000).toFixed(2)}</p>
+                    <p className="text-gray-400 text-sm mt-2">Energy (µkWh)</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
+                    <p className="text-accent text-2xl font-bold">{camasResult.co2_g.toFixed(4)}</p>
+                    <p className="text-gray-400 text-sm mt-2">CO₂ (g)</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-green-400">{(((baselineResult.energy_kwh - camasResult.energy_kwh) / baselineResult.energy_kwh) * 1000000 / 1000).toFixed(0)}K tons</p>
-                  <p className="text-gray-400 mt-2">CO₂ Reduction/Year</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-blue-400">{(((baselineResult.latency_ms - camasResult.latency_ms) / baselineResult.latency_ms) * 100).toFixed(1)}%</p>
-                  <p className="text-gray-400 mt-2">Faster Response</p>
+                <div className="mt-6 bg-gray-900 border border-accent/30 rounded-lg p-4">
+                  <p className="text-sm text-gray-300"><span className="text-accent font-bold">Routing Decision:</span> {camasResult.routing_reason}</p>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Single Result - Baseline Only */}
+            {baselineResult && !camasResult && (
+              <div className="bg-gradient-to-br from-yellow-900/15 to-yellow-800/5 border border-yellow-700/30 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold mb-6">⚙️ Baseline Result</h2>
+                <div className="grid md:grid-cols-4 gap-4">
+                  <div className="bg-gray-900/80 border border-yellow-600/30 rounded-lg p-6 text-center">
+                    <p className="text-yellow-400 text-2xl font-bold">{baselineResult.model}</p>
+                    <p className="text-gray-400 text-sm mt-2">Model (Always)</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-yellow-600/30 rounded-lg p-6 text-center">
+                    <p className="text-yellow-400 text-2xl font-bold">{baselineResult.complexity.toFixed(1)}</p>
+                    <p className="text-gray-400 text-sm mt-2">Complexity</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-yellow-600/30 rounded-lg p-6 text-center">
+                    <p className="text-yellow-400 text-2xl font-bold">{(baselineResult.energy_kwh * 1000000).toFixed(2)}</p>
+                    <p className="text-gray-400 text-sm mt-2">Energy (µkWh)</p>
+                  </div>
+                  <div className="bg-gray-900/80 border border-yellow-600/30 rounded-lg p-6 text-center">
+                    <p className="text-yellow-400 text-2xl font-bold">{baselineResult.co2_g.toFixed(4)}</p>
+                    <p className="text-gray-400 text-sm mt-2">CO₂ (g)</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Hint to run both */}
+            {(camasResult || baselineResult) && !(camasResult && baselineResult) && (
+              <div className="bg-blue-900/20 border border-blue-700/50 rounded-lg p-4">
+                <p className="text-blue-300 text-sm">
+                  💡 Run {camasResult ? 'Baseline' : 'CAMAS'} to see a comparison
+                </p>
+              </div>
+            )}
           </div>
         )}
 
         {!baselineResult && !camasResult && !loading && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-400">👆 Enter a query above and click buttons to see the comparison</p>
+            <p className="text-xl text-gray-400">👆 Enter a query above and click a button to see results</p>
           </div>
         )}
       </div>
