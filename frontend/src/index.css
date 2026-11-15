@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-accent: #00ff88;
+}
+
+body {
+  background-color: rgb(3 7 18);
+  color: white;
+  font-family: Inter, system-ui, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Accent color utilities */
+.bg-accent {
+  background-color: #00ff88;
+}
+
+.text-accent {
+  color: #00ff88;
+}
+
+.border-accent {
+  border-color: #00ff88;
+}
+
+.shadow-accent\/50 {
+  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-out;
+}
