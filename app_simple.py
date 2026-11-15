@@ -92,12 +92,12 @@ def query(request: dict):
     baseline_latency = 2300 + complexity * 300 + ((hash(query_text) % 600) - 300)  # Varied based on query
     
     # Model selection for CAMAS based on complexity
-    if complexity < 3.5:
+    if complexity < 3:
         camas_model = "phi3"
         camas_energy = 0.000018
         camas_co2 = 0.0072
         camas_latency = 800 + (hash(query_text) % 300)
-    elif complexity < 6.5:
+    elif complexity < 6:
         camas_model = "llama3.2:3b"
         camas_energy = 0.000047
         camas_co2 = 0.0188
@@ -115,18 +115,22 @@ def query(request: dict):
         co2 = baseline_co2
         latency = round(baseline_latency)
         routing_reason = "Baseline always uses llama3.2:8b"
+        # For baseline mode, show comparison to baseline itself (0 savings)
+        energy_savings = 0
+        co2_savings = 0
+        latency_savings = 0
+        cost_savings = 0
     else:
         model = camas_model
         energy = camas_energy
         co2 = camas_co2
         latency = round(camas_latency)
         routing_reason = f"CAMAS routed to {camas_model} (Complexity: {complexity:.1f}/10)"
-    
-    # Calculate savings vs baseline
-    energy_savings = round(((baseline_energy - camas_energy) / baseline_energy) * 100, 1)
-    co2_savings = round(((baseline_co2 - camas_co2) / baseline_co2) * 100, 1)
-    latency_savings = round(baseline_latency - camas_latency)
-    cost_savings = round((baseline_energy - camas_energy) * 0.15, 8)  # $0.15 per kWh
+        # For CAMAS mode, show comparison to baseline
+        energy_savings = round(((baseline_energy - camas_energy) / baseline_energy) * 100, 1)
+        co2_savings = round(((baseline_co2 - camas_co2) / baseline_co2) * 100, 1)
+        latency_savings = round(baseline_latency - camas_latency)
+        cost_savings = round((baseline_energy - camas_energy) * 0.15, 8)  # $0.15 per kWh
     
     return JSONResponse({
         "status": "success",

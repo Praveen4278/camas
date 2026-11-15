@@ -44,12 +44,12 @@ function generateMockResult(query, mode) {
   
   // Model selection for CAMAS based on complexity (matches backend thresholds)
   let camasModel, camasEnergy, camasCo2, camasLatency
-  if (complexity < 3.5) {
+  if (complexity < 3) {
     camasModel = 'phi3'
     camasEnergy = 0.000018
     camasCo2 = 0.0072
     camasLatency = 800 + (hashValue % 300)
-  } else if (complexity < 6.5) {
+  } else if (complexity < 6) {
     camasModel = 'llama3.2:3b'
     camasEnergy = 0.000047
     camasCo2 = 0.0188
@@ -103,8 +103,9 @@ export const API = {
   executeQuery: async (query, mode = 'camas') => {
     try {
       console.log(`[API] Attempting to call backend for ${mode} query...`)
+      console.log(`[API] Sending query: "${query}" with mode: "${mode}"`)
       const response = await client.post('/query', { query, mode })
-      console.log(`[API] Backend response received:`, response)
+      console.log(`[API] Backend response received:`, response.data)
       
       // Extract and map backend response to expected format
       const data = response.data || response
@@ -137,6 +138,7 @@ export const API = {
       return mapped
     } catch (error) {
       console.warn(`[API] Backend failed (${error.message}), using mock data`)
+      console.warn(`[API] Mock data will be generated for query: "${query}"`)
       // Simulate network delay
       return new Promise((resolve) => {
         setTimeout(() => {

@@ -76,6 +76,12 @@ export default function LandingPage() {
             <Link to="/benchmarks" className="inline-flex items-center justify-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition">
               📊 View Benchmarks
             </Link>
+            <Link to="/research" className="inline-flex items-center justify-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition">
+              📚 Read Research
+            </Link>
+            <Link to="/results" className="inline-flex items-center justify-center px-8 py-4 border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition">
+              📈 View Results
+            </Link>
           </div>
 
           {/* Key Metrics */}

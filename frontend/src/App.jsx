@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import ArchitecturePage from './pages/ArchitecturePage'
 import BenchmarksPage from './pages/BenchmarksPage'
 import ResearchPage from './pages/ResearchPage'
+import ResultsPage from './pages/ResultsPage'
 
 import NavBar from './components/NavBar'
 import Footer from './components/Footer'
@@ -24,6 +25,7 @@ function App() {
             <Route path="/architecture" element={<ArchitecturePage />} />
             <Route path="/benchmarks" element={<BenchmarksPage />} />
             <Route path="/research" element={<ResearchPage />} />
+            <Route path="/results" element={<ResultsPage />} />
           </Routes>
         </main>
         <Footer />

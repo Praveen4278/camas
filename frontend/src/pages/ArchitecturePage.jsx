@@ -3,39 +3,39 @@ export default function ArchitecturePage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-950 to-gray-900 py-12">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-4">🏗️ Multi-Agent Architecture</h1>
-        <p className="text-lg text-gray-400 mb-12">CAMAS orchestrates five specialized agents through LangGraph for intelligent LLM routing and energy optimization</p>
+        <p className="text-lg text-gray-400 mb-12">CAMAS orchestrates eight specialized agents through LangGraph for intelligent LLM routing, energy monitoring, and comprehensive result aggregation</p>
 
         {/* System Overview */}
         <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-8 mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">🎯 CAMAS System Architecture</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center">🎯 CAMAS System Architecture (8 Agents)</h2>
           <div className="max-w-3xl mx-auto space-y-3">
             {[
               { 
                 name: '1. Planner Agent', 
                 desc: 'Analyzes task complexity (simple/medium/complex)', 
                 input: 'User query',
-                output: 'Complexity score',
+                output: 'Complexity score (0-10)',
                 icon: '🧠'
               },
               { 
                 name: '2. Router Agent', 
                 desc: 'Selects optimal model based on complexity', 
                 input: 'Complexity score',
-                output: 'Selected model',
+                output: 'Selected model (phi3/llama3.2:3b/llama3.2:8b)',
                 icon: '🛣️'
               },
               { 
                 name: '3. Executor Agent', 
                 desc: 'Runs query on selected model via Ollama', 
                 input: 'Model selection',
-                output: 'Query result',
+                output: 'Query result & response time',
                 icon: '⚙️'
               },
               { 
                 name: '4. Energy Monitor Agent', 
                 desc: 'Measures real-time energy consumption (CodeCarbon)', 
                 input: 'Model execution',
-                output: 'Energy (kWh)',
+                output: 'Energy consumption (kWh)',
                 icon: '⚡'
               },
               { 
@@ -44,6 +44,27 @@ export default function ArchitecturePage() {
                 input: 'Energy data',
                 output: 'CO₂ emissions (g)',
                 icon: '🌍'
+              },
+              { 
+                name: '6. Storage Agent', 
+                desc: 'Persists query results and metrics to database', 
+                input: 'All metrics (energy, CO₂, latency)',
+                output: 'Stored record ID',
+                icon: '💾'
+              },
+              { 
+                name: '7. Aggregator Agent', 
+                desc: 'Compiles comparison metrics (baseline vs CAMAS)', 
+                input: 'Current result + historical baseline',
+                output: 'Savings percentages & deltas',
+                icon: '📊'
+              },
+              { 
+                name: '8. API Response Agent', 
+                desc: 'Formats complete response for frontend', 
+                input: 'All metrics and comparisons',
+                output: 'JSON response with visualizations',
+                icon: '📤'
               },
             ].map((agent, i) => (
               <div key={i} className="flex gap-4 p-4 bg-gray-950 border border-gray-800 rounded-lg hover:border-accent/50 transition">

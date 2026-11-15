@@ -28,8 +28,10 @@ export default function OrchestrationStudio() {
       console.log('Got both responses:', { baseline: baselineResp, camas: camasResp })
       console.log('Energy savings: Baseline uses', baselineResp.model, '-> CAMAS uses', camasResp.model)
       console.log('Energy reduction:', camasResp.energy_savings_percent, '%')
+      console.log('BEFORE setState - camasResult would become:', camasResp)
       setBaselineResult(baselineResp)
       setCamasResult(camasResp)
+      console.log('AFTER setState called with:', { baseline: baselineResp.energy_savings_percent, camas: camasResp.energy_savings_percent })
     } catch (err) {
       console.error('Error executing queries:', err)
       setError(`Error: ${err.message}`)
@@ -46,7 +48,7 @@ export default function OrchestrationStudio() {
         <div className="mb-12">
           <h1 className="text-5xl font-bold mb-4">🚀 Orchestration Studio</h1>
           <p className="text-xl text-gray-400">
-            See how CAMAS intelligently routes your queries versus conventional approaches. Watch the energy savings in real-time.
+            Enter different queries to see how CAMAS intelligently routes to different models based on complexity. The more complex your query, the more energy savings you'll see.
           </p>
         </div>
 
@@ -59,7 +61,7 @@ export default function OrchestrationStudio() {
               placeholder="Try: 'What is machine learning?' or 'Explain how transformers work' or 'Design a microservices architecture'"
               className="w-full h-40 px-4 py-3 bg-gray-950 border border-gray-700 rounded-lg focus:border-accent focus:outline-none text-white placeholder-gray-500 resize-none text-base leading-relaxed"
             />
-            <p className="text-xs text-gray-500 mt-2">💡 Tip: More detailed queries will be routed to more powerful models</p>
+            <p className="text-xs text-gray-500 mt-2">💡 Tip: Try different queries from simple ("What is AI?") to complex ("Design a distributed ML system") to see different model selections and energy savings</p>
           </div>
 
           {error && (
@@ -68,23 +70,16 @@ export default function OrchestrationStudio() {
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="space-y-3">
             <button
               onClick={() => handleExecute()}
               disabled={loading}
-              className="px-6 py-4 bg-gray-800 border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-700 disabled:opacity-50 transition flex items-center justify-center gap-2 text-lg"
-            >
-              {loading && <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />}
-              ⚙️ Run Baseline (Heavy Model)
-            </button>
-            <button
-              onClick={() => handleExecute()}
-              disabled={loading}
-              className="px-6 py-4 bg-accent text-darker font-bold rounded-lg hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 transition flex items-center justify-center gap-2 text-lg"
+              className="w-full px-6 py-4 bg-accent text-darker font-bold rounded-lg hover:shadow-lg hover:shadow-accent/50 disabled:opacity-50 transition flex items-center justify-center gap-2 text-lg"
             >
               {loading && <span className="inline-block w-5 h-5 border-2 border-darker border-t-transparent rounded-full animate-spin" />}
-              ✨ Run CAMAS (Smart Routing)
+              ⚡ Analyze Query & Compare
             </button>
+            <p className="text-xs text-gray-500 text-center">Runs baseline (llama3.2:8b) vs CAMAS smart routing for comparison</p>
           </div>
         </div>
 
@@ -94,6 +89,7 @@ export default function OrchestrationStudio() {
             {baselineResult && camasResult && (
               <div className="bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/30 rounded-2xl p-8">
                 <h2 className="text-3xl font-bold mb-6 text-center">📊 Comparison Results</h2>
+                <p className="text-xs text-gray-400 text-center mb-4">Query: "{query}"</p>
                 
                 <div className="grid md:grid-cols-4 gap-4 mb-8">
                   <div className="bg-gray-900/80 border border-accent/30 rounded-lg p-6 text-center">
@@ -123,6 +119,7 @@ export default function OrchestrationStudio() {
                       <p className="text-sm"><span className="text-gray-400">Model:</span> <span className="font-bold text-white">{baselineResult.model}</span></p>
                       <p className="text-sm"><span className="text-gray-400">Complexity:</span> <span className="font-bold">{baselineResult.complexity.toFixed(1)}/10</span></p>
                       <p className="text-sm"><span className="text-gray-400">Energy:</span> <span className="font-bold text-yellow-400">{(baselineResult.energy_kwh * 1000000).toFixed(2)} µkWh</span></p>
+                      <p className="text-sm"><span className="text-gray-400">CO₂:</span> <span className="font-bold text-yellow-400">{baselineResult.co2_g.toFixed(4)}g</span></p>
                       <p className="text-sm"><span className="text-gray-400">Latency:</span> <span className="font-bold text-yellow-400">{baselineResult.latency_ms}ms</span></p>
                     </div>
                   </div>
@@ -132,6 +129,7 @@ export default function OrchestrationStudio() {
                       <p className="text-sm"><span className="text-gray-400">Model:</span> <span className="font-bold text-accent">{camasResult.model}</span></p>
                       <p className="text-sm"><span className="text-gray-400">Complexity:</span> <span className="font-bold text-accent">{camasResult.complexity.toFixed(1)}/10</span></p>
                       <p className="text-sm"><span className="text-gray-400">Energy:</span> <span className="font-bold text-green-400">{(camasResult.energy_kwh * 1000000).toFixed(2)} µkWh</span></p>
+                      <p className="text-sm"><span className="text-gray-400">CO₂:</span> <span className="font-bold text-green-400">{camasResult.co2_g.toFixed(4)}g</span></p>
                       <p className="text-sm"><span className="text-gray-400">Latency:</span> <span className="font-bold text-green-400">{camasResult.latency_ms}ms</span></p>
                     </div>
                   </div>

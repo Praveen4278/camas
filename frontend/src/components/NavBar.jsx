@@ -11,6 +11,7 @@ export default function NavBar() {
     { path: '/architecture', label: 'Architecture' },
     { path: '/benchmarks', label: 'Benchmarks' },
     { path: '/research', label: 'Research' },
+    { path: '/results', label: 'Results' },
   ]
 
   return (
