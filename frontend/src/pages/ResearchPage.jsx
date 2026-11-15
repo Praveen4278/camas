@@ -408,10 +408,17 @@ export default function ResearchPage() {
         </div>
 
         {/* Call to Action */}
-        <div className="bg-gradient-to-r from-accent to-accent/60 rounded-lg p-8 text-gray-950">
-          <h3 className="text-2xl font-bold mb-3">🎯 CAMAS: The Solution to AI's $25B Problem</h3>
-          <p className="mb-4">With $25B in annual environmental damage from data centers and explosive AI growth, CAMAS demonstrates that intelligent model routing can provide massive efficiency gains without sacrificing performance.</p>
-          <p className="font-bold">Try CAMAS now → Go to Orchestration Studio to test intelligent routing in action</p>
+        <div className="rounded-lg p-8 border-2 border-accent bg-gradient-to-br from-accent/20 to-accent/5">
+          <div className="flex items-start gap-4">
+            <span className="text-4xl">🎯</span>
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold mb-3 text-accent">CAMAS: The Solution to AI's $25B Problem</h3>
+              <p className="mb-4 text-gray-200">With $25B in annual environmental damage from data centers and explosive AI growth, CAMAS demonstrates that intelligent model routing can provide massive efficiency gains without sacrificing performance.</p>
+              <div className="bg-accent/20 border border-accent/50 rounded p-3 inline-block">
+                <p className="font-bold text-accent">✨ Try CAMAS now → Go to Orchestration Studio to test intelligent routing in action</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
