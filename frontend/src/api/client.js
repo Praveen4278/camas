@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-// API client for CAMAS - use environment variable or fallback to localhost
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// API client for CAMAS - use environment variable or Vercel API
+const baseURL = import.meta.env.VITE_API_URL || (
+  typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : '/api'
+)
 console.log(`[API] Using base URL: ${baseURL}`)
 
 const client = axios.create({
