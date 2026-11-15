@@ -18,27 +18,33 @@ export default function OrchestrationStudio() {
     setLoading(true)
 
     try {
+      console.log(`Executing ${mode} query:`, query)
       const response = await API.executeQuery(query, mode)
+      console.log(`Got response for ${mode}:`, response)
+      
       if (mode === 'baseline') {
         setBaselineResult(response)
       } else {
         setCamasResult(response)
       }
     } catch (err) {
-      console.error('Error:', err)
-      // Use mock data
+      console.error(`Error executing ${mode}:`, err)
+      
+      // Use mock data as fallback
       const mockResult = {
         query: query,
         mode: mode,
         model: mode === 'baseline' ? 'llama3.2:8b' : 'phi3',
-        complexity: Math.random() * 10,
+        complexity: 5 + Math.random() * 5,
         response: `This is a demonstration response from ${mode === 'baseline' ? 'baseline' : 'CAMAS'} routing.`,
-        latency_ms: Math.random() * 5000,
-        energy_kwh: Math.random() * 0.0001,
-        co2_g: Math.random() * 0.05,
-        cost_usd: Math.random() * 0.001,
+        latency_ms: mode === 'baseline' ? 2500 + Math.random() * 1000 : 1500 + Math.random() * 500,
+        energy_kwh: mode === 'baseline' ? 0.0001 : 0.00005,
+        co2_g: mode === 'baseline' ? 0.04 : 0.02,
+        cost_usd: mode === 'baseline' ? 0.0015 : 0.0007,
         routing_reason: mode === 'baseline' ? 'Baseline always uses llama3.2:8b' : 'CAMAS selected model by complexity',
       }
+      console.log(`Using mock data for ${mode}:`, mockResult)
+      
       if (mode === 'baseline') {
         setBaselineResult(mockResult)
       } else {

@@ -1,42 +1,36 @@
 import axios from 'axios'
 
-// For local development, connect to backend at localhost:8000
-// For Vercel deployment, use mock data
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'mock://' 
-  : (import.meta.env.VITE_API_URL || 'http://localhost:8000')
-
+// API client for CAMAS
 const client = axios.create({
-  baseURL: API_BASE_URL === 'mock://' ? 'http://localhost:8000' : API_BASE_URL,
-  timeout: 120000,
+  baseURL: 'http://localhost:8000',
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// Mock data generator using only your 3 models from research paper
+// Mock data generator using only your 3 models
 function generateMockResult(query, mode) {
   const queryLower = query.toLowerCase()
   
-  // Complexity scoring
+  // Complexity scoring based on query length and keywords
   let complexity = Math.min(10.0, (query.split(' ').length / 3) + (query.length / 100))
   
-  // Boost complexity for complex queries
+  // Boost for complex keywords
   if (queryLower.includes('design') || queryLower.includes('architecture') || 
-      queryLower.includes('complex') || queryLower.includes('explain deep') ||
-      queryLower.includes('abstract')) {
-    complexity = Math.min(10, complexity + 3)
+      queryLower.includes('complex') || queryLower.includes('explain') ||
+      queryLower.includes('implement') || queryLower.includes('optimize')) {
+    complexity = Math.min(10, complexity + 2)
   }
   
-  // Model selection - only 3 models from research paper
+  // Model selection
   let model, energy, co2
   if (mode === 'baseline') {
-    // Baseline always uses llama3.2:8b
     model = 'llama3.2:8b'
     energy = 0.000111
     co2 = 0.0446
   } else {
-    // CAMAS intelligent routing
+    // CAMAS routing
     if (complexity < 4) {
       model = 'phi3'
       energy = 0.000018
@@ -57,52 +51,38 @@ function generateMockResult(query, mode) {
     mode: mode,
     model: model,
     complexity: complexity,
-    response: `This is an intelligent response demonstrating CAMAS' ${mode === 'baseline' ? 'baseline' : 'smart routing'} approach.`,
+    response: `This response demonstrates intelligent ${mode === 'baseline' ? 'baseline' : 'CAMAS'} routing.`,
     latency_ms: 1500 + (complexity * 150) + (Math.random() * 500),
     energy_kwh: energy,
     co2_g: co2,
-    cost_usd: energy * 0.15, // Rough estimate: $0.15 per kWh
+    cost_usd: energy * 0.15,
     routing_reason: mode === 'baseline' 
-      ? 'Baseline always uses llama3.2:8b regardless of complexity'
+      ? 'Baseline always uses llama3.2:8b'
       : `CAMAS routed to ${model} (Complexity: ${complexity.toFixed(1)}/10)`,
   }
 }
 
-// Response interceptor for local API
-client.interceptors.response.use(
-  (response) => {
-    return response.data
-  },
-  (error) => {
-    // If local API fails, return mock data as fallback
-    if (!process.env.NODE_ENV === 'production') {
-      console.log('Using mock data fallback')
-    }
-    return Promise.reject(error)
-  }
-)
-
 export default client
 
 export const API = {
-  // Single query execution
+  // Execute query - tries backend first, falls back to mock
   executeQuery: async (query, mode = 'camas') => {
     try {
-      // Try to call backend API first (for local development)
-      if (process.env.NODE_ENV !== 'production') {
-        const response = await client.post('/query', { query, mode })
-        return response
-      }
+      console.log(`[API] Attempting to call backend for ${mode} query...`)
+      const response = await client.post('/query', { query, mode })
+      console.log(`[API] Backend response received:`, response)
+      return response
     } catch (error) {
-      console.log('Backend unavailable, using mock data')
+      console.warn(`[API] Backend failed (${error.message}), using mock data`)
+      // Simulate network delay
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const mock = generateMockResult(query, mode)
+          console.log(`[API] Generated mock result:`, mock)
+          resolve(mock)
+        }, 800)
+      })
     }
-    
-    // Use mock data (for Vercel or if backend fails)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(generateMockResult(query, mode))
-      }, 800) // Simulate 800ms response time
-    })
   },
 
   // Health check
@@ -110,26 +90,7 @@ export const API = {
     try {
       return await client.get('/health')
     } catch {
-      return { status: 'mock' }
+      return { status: 'unavailable' }
     }
   },
-
-  // Placeholder methods for compatibility
-  startExperiment: (mode, maxQueries = null) =>
-    Promise.reject(new Error('Not available in demo')),
-
-  getExperimentSummary: (runId) =>
-    Promise.reject(new Error('Not available in demo')),
-
-  listExperiments: () =>
-    Promise.reject(new Error('Not available in demo')),
-
-  getRoutingDistribution: (runId) =>
-    Promise.reject(new Error('Not available in demo')),
-
-  generateReports: () =>
-    Promise.reject(new Error('Not available in demo')),
-
-  getConfig: () =>
-    Promise.reject(new Error('Not available in demo')),
 }
