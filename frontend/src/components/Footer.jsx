@@ -57,19 +57,30 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Connect */}
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex items-center space-x-4">
               <a
+                href="https://www.linkedin.com/in/praveen-rajasekar-4b9b67283/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 hover:text-accent transition text-2xl flex items-center justify-center w-10 h-10 hover:bg-gray-800 rounded-lg transition"
+                title="LinkedIn"
+              >
+                💼
+              </a>
+              <a
                 href="https://github.com/Praveen4278/camas"
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-400 hover:text-accent transition text-2xl"
+                className="text-gray-400 hover:text-accent transition text-2xl flex items-center justify-center w-10 h-10 hover:bg-gray-800 rounded-lg transition"
+                title="GitHub"
               >
                 🐙
               </a>
             </div>
+            <p className="text-xs text-gray-600 mt-3">Follow for updates on CAMAS and AI sustainability research</p>
           </div>
         </div>
 
