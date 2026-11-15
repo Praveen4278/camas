@@ -1,64 +1,98 @@
 import axios from 'axios'
 
-// API client for CAMAS
+// API client for CAMAS - use environment variable or fallback to localhost
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+console.log(`[API] Using base URL: ${baseURL}`)
+
 const client = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// Mock data generator using only your 3 models
+// Mock data generator - matches backend logic exactly
 function generateMockResult(query, mode) {
   const queryLower = query.toLowerCase()
   
-  // Complexity scoring based on query length and keywords
-  let complexity = Math.min(10.0, (query.split(' ').length / 3) + (query.length / 100))
+  // Calculate complexity based on query characteristics (matches backend)
+  const words = queryLower.split(' ')
+  const wordCount = words.length
+  const charCount = queryLower.length
   
-  // Boost for complex keywords
-  if (queryLower.includes('design') || queryLower.includes('architecture') || 
-      queryLower.includes('complex') || queryLower.includes('explain') ||
-      queryLower.includes('implement') || queryLower.includes('optimize')) {
-    complexity = Math.min(10, complexity + 2)
-  }
+  // Base complexity from length
+  let complexity = Math.min(10, (wordCount / 5) + (charCount / 100))
   
-  // Model selection
-  let model, energy, co2
-  if (mode === 'baseline') {
-    model = 'llama3.2:8b'
-    energy = 0.000111
-    co2 = 0.0446
+  // Boost complexity for technical keywords (matches backend)
+  const technicalKeywords = ['design', 'architecture', 'implement', 'optimize', 'algorithm', 
+                             'system', 'framework', 'explain', 'analyze', 'complex', 'abstract',
+                             'distributed', 'machine', 'learning', 'neural', 'transform']
+  const keywordBoost = technicalKeywords.filter(k => queryLower.includes(k)).length * 0.5
+  complexity = Math.min(10, complexity + keywordBoost)
+  
+  // Add small random variation (±5%)
+  const hashValue = queryLower.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+  complexity += (complexity * 0.05 * (2 * ((hashValue % 10) / 10) - 1))
+  complexity = Math.max(1, Math.min(10, complexity))
+  
+  // Baseline always uses llama3.2:8b
+  const baselineModel = 'llama3.2:8b'
+  const baselineEnergy = 0.000111
+  const baselineCo2 = 0.0446
+  const baselineLatency = 2300 + complexity * 300 + ((hashValue % 600) - 300)
+  
+  // Model selection for CAMAS based on complexity (matches backend thresholds)
+  let camasModel, camasEnergy, camasCo2, camasLatency
+  if (complexity < 3.5) {
+    camasModel = 'phi3'
+    camasEnergy = 0.000018
+    camasCo2 = 0.0072
+    camasLatency = 800 + (hashValue % 300)
+  } else if (complexity < 6.5) {
+    camasModel = 'llama3.2:3b'
+    camasEnergy = 0.000047
+    camasCo2 = 0.0188
+    camasLatency = 1300 + (hashValue % 400)
   } else {
-    // CAMAS routing
-    if (complexity < 4) {
-      model = 'phi3'
-      energy = 0.000018
-      co2 = 0.0072
-    } else if (complexity < 8) {
-      model = 'llama3.2:3b'
-      energy = 0.000047
-      co2 = 0.0188
-    } else {
-      model = 'llama3.2:8b'
-      energy = 0.000087
-      co2 = 0.0349
-    }
+    camasModel = 'llama3.2:8b'
+    camasEnergy = 0.000087
+    camasCo2 = 0.0349
+    camasLatency = 1700 + (hashValue % 500)
   }
+  
+  // Select based on mode
+  const selectedModel = mode === 'baseline' ? baselineModel : camasModel
+  const selectedEnergy = mode === 'baseline' ? baselineEnergy : camasEnergy
+  const selectedCo2 = mode === 'baseline' ? baselineCo2 : camasCo2
+  const selectedLatency = mode === 'baseline' ? baselineLatency : camasLatency
+  
+  // Calculate savings (CAMAS vs baseline)
+  const energySavings = Math.round(((baselineEnergy - camasEnergy) / baselineEnergy) * 1000) / 10
+  const co2Savings = Math.round(((baselineCo2 - camasCo2) / baselineCo2) * 1000) / 10
+  const latencySavings = Math.round(baselineLatency - camasLatency)
+  const costSavings = Math.round((baselineEnergy - camasEnergy) * 0.15 * 100000000) / 100000000
   
   return {
     query: query,
     mode: mode,
-    model: model,
-    complexity: complexity,
+    model_selected: selectedModel,
+    complexity_score: Math.round(complexity * 10) / 10,
     response: `This response demonstrates intelligent ${mode === 'baseline' ? 'baseline' : 'CAMAS'} routing.`,
-    latency_ms: 1500 + (complexity * 150) + (Math.random() * 500),
-    energy_kwh: energy,
-    co2_g: co2,
-    cost_usd: energy * 0.15,
+    latency_ms: Math.round(selectedLatency),
+    energy_kwh: selectedEnergy,
+    co2_grams: selectedCo2,
+    cost_usd: selectedEnergy * 0.15,
+    baseline_energy_kwh: baselineEnergy,
+    baseline_co2_grams: baselineCo2,
+    baseline_latency_ms: Math.round(baselineLatency),
+    energy_savings_percent: energySavings,
+    co2_savings_percent: co2Savings,
+    latency_savings_ms: latencySavings,
+    cost_savings_usd: costSavings,
     routing_reason: mode === 'baseline' 
       ? 'Baseline always uses llama3.2:8b'
-      : `CAMAS routed to ${model} (Complexity: ${complexity.toFixed(1)}/10)`,
+      : `CAMAS routed to ${camasModel} (Complexity: ${complexity.toFixed(1)}/10)`,
   }
 }
 
