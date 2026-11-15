@@ -62,7 +62,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex items-center space-x-4">
               <a
-                href="https://www.linkedin.com/in/praveen-rajasekar-4b9b67283/"
+                href="https://www.linkedin.com/in/praveenrajmct"
                 target="_blank"
                 rel="noreferrer"
                 className="text-gray-400 hover:text-accent transition text-2xl flex items-center justify-center w-10 h-10 hover:bg-gray-800 rounded-lg transition"
